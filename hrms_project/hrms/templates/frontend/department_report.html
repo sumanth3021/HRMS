@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Department Report</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 25px;
+        }
+
+        /* Report card */
+        .report-card {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: center; /* table content aligned */
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        th {
+            background-color: #2c3e50;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        tr {
+            transition: background-color 0.3s ease;
+        }
+
+        tr:hover {
+            background-color: #f2f6fa;
+        }
+
+        .no-data {
+            text-align: center;
+            color: #7f8c8d;
+            font-style: italic;
+            padding: 15px;
+        }
+
+        /* Back button */
+        .back-btn-wrapper {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            padding: 8px 18px;
+            font-size: 13px;
+            background-color: #ecf0f1;
+            color: #2c3e50;
+            text-decoration: none;
+            border-radius: 5px;
+            border: 1px solid #bdc3c7;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: #dfe6e9;
+            border-color: #95a5a6;
+            transform: translateY(-1px);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Department-wise Employee Count</h1>
+
+    <div class="report-card">
+        <table>
+            <tr>
+                <th>Department</th>
+                <th>Employee Count</th>
+            </tr>
+
+            {% for row in report_data %}
+            <tr>
+                <td>{{ row.department }}</td>
+                <td>{{ row.count }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2" class="no-data">No data available</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <div class="back-btn-wrapper">
+            <a href="/home/" class="btn-secondary"> Back to Employee List</a>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
